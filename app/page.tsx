@@ -3,11 +3,21 @@ import { getRuntime, RuntimeApi } from '../pages/api/runtime'
 export const runtime = 'experimental-edge'
 
 async function getData() {
-  const res = await fetch(
-    'https://verdant-daifuku-4003e5.netlify.app/api/runtime'
-  )
-  const data = res.json() as Promise<RuntimeApi>
-  return data
+  try {
+    const res = await fetch(
+      'https://verdant-daifuku-4003e5.netlify.app/api/runtime'
+    )
+    // Recommendation: handle errors
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error(`Failed to fetch data. (${res.statusText})`)
+    }
+
+    const data = res.json() as Promise<RuntimeApi>
+    return data
+  } catch (error) {
+    throw new Error(`Error while fetching: ${error}`)
+  }
 }
 
 const Page = async () => {
