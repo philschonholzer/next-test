@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getRuntime, RuntimeApi } from '../pages/api/runtime'
+export const runtime = 'experimental-edge'
 
 async function getData() {
   const url = process.env.URL ? process?.env?.URL : 'http://localhost:3000'
