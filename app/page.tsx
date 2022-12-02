@@ -3,7 +3,7 @@ import { getRuntime, RuntimeApi } from '../pages/api/runtime'
 export const runtime = 'experimental-edge'
 
 async function getData() {
-  const url = process.env.URL ? process?.env?.URL : 'http://localhost:3000'
+  const url = 'https://verdant-daifuku-4003e5.netlify.app/'
   console.log('URL', url)
 
   const res = await fetch(`${url}/api/runtime`, {
