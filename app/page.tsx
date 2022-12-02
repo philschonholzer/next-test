@@ -5,7 +5,7 @@ async function getData() {
   const url = process.env.URL
     ? process?.env?.URL
     : 'Deno' in globalThis
-    ? Deno?.env?.URL
+    ? globalThis.Deno?.env?.URL
     : 'http://localhost:3000'
   console.log('URL', url)
 
