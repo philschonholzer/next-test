@@ -4,7 +4,7 @@ export const runtime = 'experimental-edge'
 
 async function getData() {
   try {
-    const res = await fetch('/api/runtime')
+    const res = await fetch('https://reqres.in/api/users?page=2')
     // Recommendation: handle errors
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
