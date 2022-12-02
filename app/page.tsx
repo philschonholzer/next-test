@@ -4,9 +4,7 @@ export const runtime = 'experimental-edge'
 
 async function getData() {
   try {
-    const res = await fetch(
-      'https://verdant-daifuku-4003e5.netlify.app/api/runtime'
-    )
+    const res = await fetch('/api/runtime')
     // Recommendation: handle errors
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
