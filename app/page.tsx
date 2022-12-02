@@ -2,11 +2,7 @@ import Link from 'next/link'
 import { getRuntime, RuntimeApi } from '../pages/api/runtime'
 
 async function getData() {
-  const url = process.env.URL
-    ? process?.env?.URL
-    : 'Deno' in globalThis
-    ? globalThis.Deno?.env?.URL
-    : 'http://localhost:3000'
+  const url = process.env.URL ? process?.env?.URL : 'http://localhost:3000'
   console.log('URL', url)
 
   const res = await fetch(`${url}/api/runtime`, {
