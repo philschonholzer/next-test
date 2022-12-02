@@ -22,3 +22,16 @@ export async function getUsers() {
 
   return res.json() as Promise<UserList>
 }
+
+type UserApi = {
+  data: User
+  support: {
+    url: string
+    text: string
+  }
+}
+
+export async function getUser(id: string) {
+  const res = await fetch(`https://reqres.in/api/users/${id}`)
+  return res.json() as Promise<UserApi>
+}

@@ -1,21 +1,10 @@
 import Image from 'next/image'
-import { User } from '../fetch-users'
+import { getUser } from '../fetch-users'
 export const runtime = 'experimental-edge'
 
-type UserApi = {
-  data: User
-  support: {
-    url: string
-    text: string
-  }
-}
-
-async function getUser(id: string) {
-  const res = await fetch(`https://reqres.in/api/users/${id}`)
-  return res.json() as Promise<UserApi>
-}
-
 const Page = async ({ params }: { params: { id: string } }) => {
+  console.log('params', params)
+
   const { data } = await getUser(params.id)
 
   return (
