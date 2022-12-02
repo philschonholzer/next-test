@@ -1,28 +1,35 @@
 import Link from 'next/link'
-
-export const dynamic = 'force-dynamic'
-
-function getRuntime() {
-  const now = Date.now()
-  if ('Bun' in globalThis) return `bun ${now}`
-  if ('Deno' in globalThis) return `deno ${now}`
-  if (globalThis.process?.versions?.node) return `node ${now}`
-  else return `other ${now}`
-}
+import { getRuntime, RuntimeApi } from '../pages/api/runtime'
 
 async function getData() {
-  const res = Promise.resolve(getRuntime())
+  const url = process.env.URL
+    ? process?.env?.URL
+    : 'Deno' in globalThis
+    ? Deno?.env?.URL
+    : 'http://localhost:3000'
+  console.log('URL', url)
+
+  const res = await fetch(`${url}/api/runtime`, {
+    cache: 'no-store',
+  })
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
-  return res
+  return res.json() as Promise<RuntimeApi>
 }
-export default async function Page() {
+const Page = async () => {
   const data = await getData()
   return (
     <>
       <h1>Hello, Next.js!</h1>
-      <p>Hi from {data}</p>
+      <p>
+        Api {data.runtime} {data.timestamp}
+      </p>
+      <p>
+        Page {getRuntime()} {Date.now()}
+      </p>
       <Link href={'about'}>About</Link>
     </>
   )
 }
+
+export default Page
