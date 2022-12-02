@@ -6,6 +6,16 @@ const nextConfig = {
     appDir: true,
     runtime: 'experimental-edge',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'reqres.in',
+        port: '',
+        pathname: '/img/faces/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
