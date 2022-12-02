@@ -4,20 +4,16 @@ export const runtime = 'experimental-edge',
   dynamic = 'force-dynamic'
 
 async function getData() {
-  // const url = process.env
-  // console.log('URL', url)
-
-  // const res = await fetch(`${url}/api/runtime`, {
-  //   cache: 'no-store',
-  // })
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-  // return res.json() as Promise<RuntimeApi>
-  return Promise.resolve({
-    runtime: getRuntime(),
-    timestamp: Date.now(),
-  }) satisfies Promise<RuntimeApi>
+  const res = await fetch(
+    'https://verdant-daifuku-4003e5.netlify.app/api/runtime',
+    {
+      cache: 'no-store',
+    }
+  )
+  const data = res.json() as Promise<RuntimeApi>
+  return data
 }
+
 const Page = async () => {
   const data = await getData()
   return (
