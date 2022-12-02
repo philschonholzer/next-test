@@ -5,10 +5,7 @@ export const runtime = 'experimental-edge',
 
 async function getData() {
   const res = await fetch(
-    'https://verdant-daifuku-4003e5.netlify.app/api/runtime',
-    {
-      cache: 'no-store',
-    }
+    'https://verdant-daifuku-4003e5.netlify.app/api/runtime'
   )
   const data = res.json() as Promise<RuntimeApi>
   return data
