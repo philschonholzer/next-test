@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { getRuntime, RuntimeApi } from '../pages/api/runtime'
-export const runtime = 'experimental-edge',
-  dynamic = 'force-dynamic'
+export const runtime = 'experimental-edge'
 
 async function getData() {
   const res = await fetch(
