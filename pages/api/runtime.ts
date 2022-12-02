@@ -17,19 +17,19 @@ export type RuntimeApi = {
   timestamp: number
 }
 
-export default async function handler(req: NextRequest) {
+export function getRuntimeInfoObject() {
   const now = Date.now()
+  return {
+    runtime: getRuntime(),
+    timestamp: now,
+  } satisfies RuntimeApi
+}
 
-  return new Response(
-    JSON.stringify({
-      runtime: getRuntime(),
-      timestamp: now,
-    } satisfies RuntimeApi),
-    {
-      status: 200,
-      headers: {
-        'content-type': 'application/json',
-      },
-    }
-  )
+export default async function handler(req: NextRequest) {
+  return new Response(JSON.stringify(getRuntimeInfoObject()), {
+    status: 200,
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
 }

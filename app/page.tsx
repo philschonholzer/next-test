@@ -1,21 +1,9 @@
 import Link from 'next/link'
-import { getRuntime, RuntimeApi } from '../pages/api/runtime'
+import { getRuntimeInfoObject, RuntimeApi } from '../pages/api/runtime'
 export const runtime = 'experimental-edge'
 
 async function getData() {
-  try {
-    const res = await fetch('https://reqres.in/api/users?page=2')
-    // Recommendation: handle errors
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error(`Failed to fetch data. (${res.statusText})`)
-    }
-
-    const data = res.json() as Promise<RuntimeApi>
-    return data
-  } catch (error) {
-    throw new Error(`Error while fetching: ${error}`)
-  }
+  return Promise.resolve(getRuntimeInfoObject()) as Promise<RuntimeApi>
 }
 
 const Page = async () => {
@@ -24,10 +12,7 @@ const Page = async () => {
     <>
       <h1>Hello, Next.js!</h1>
       <p>
-        Api {data.runtime} {data.timestamp}
-      </p>
-      <p>
-        Page {getRuntime()} {Date.now()}
+        Page {data.runtime} {data.timestamp}
       </p>
       <Link href={'about'}>About</Link>
     </>
