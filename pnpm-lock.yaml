@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@netlify/plugin-nextjs': appdir
+  '@planetscale/database': ^1.4.1
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
@@ -14,6 +15,7 @@ specifiers:
   typescript: 4.9.3
 
 dependencies:
+  '@planetscale/database': 1.4.1
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
@@ -1233,6 +1235,11 @@ packages:
       picocolors: 1.0.0
       tiny-glob: 0.2.9
       tslib: 2.4.1
+    dev: false
+
+  /@planetscale/database/1.4.1:
+    resolution: {integrity: sha512-ERWUqRnG0z29RYeoqSN3LxQlGumvnRSaEIpiCCvUVT50V5Xbg/pJtMBuPhTUu69C+x5mV5KCImGEdK8umVHwuw==}
+    engines: {node: '>=16'}
     dev: false
 
   /@pnpm/network.ca-file/1.0.2:
