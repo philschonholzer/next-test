@@ -1,4 +1,17 @@
 import { connect } from '@planetscale/database'
+import { z } from 'zod'
+
+const Product = z.object({
+  id: z.number(),
+  name: z.string(),
+  image_url: z.string(),
+  category_id: z.number(),
+})
+
+const Category = z.object({
+  id: z.number(),
+  name: z.string(),
+})
 
 const config = {
   host: process.env.PSCALE_HOST,
@@ -8,7 +21,8 @@ const config = {
 
 export const getAllCategories = async () => {
   const conn = await connect(config)
-  return conn.execute('SELECT * FROM categories')
+  const result = await conn.execute('SELECT * FROM categories')
+  return Category.array().parse(result.rows)
 }
 
 export const getProductsOfCategory = async (categoryId: string) => {
@@ -16,8 +30,9 @@ export const getProductsOfCategory = async (categoryId: string) => {
   const params = {
     categoryId,
   }
-  return conn.execute(
+  const result = await conn.execute(
     'SELECT * FROM products WHERE category_id=:categoryId',
     params
   )
+  return Product.array().parse(result.rows)
 }
