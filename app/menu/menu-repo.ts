@@ -4,9 +4,10 @@ import { z } from 'zod'
 const Product = z.object({
   id: z.number(),
   name: z.string(),
-  image_url: z.string(),
+  image_url: z.string().nullable(),
   category_id: z.number(),
 })
+export type Product = z.infer<typeof Product>
 
 const Category = z.object({
   id: z.number(),
@@ -35,4 +36,13 @@ export const getProductsOfCategory = async (categoryId: string) => {
     params
   )
   return Product.array().parse(result.rows)
+}
+
+export const addProduct = async (params: Omit<Product, 'id'>) => {
+  const conn = await connect(config)
+  const result = await conn.execute(
+    'INSERT INTO products (name, image_url, category_id) VALUES (:name, :image_url, :category_id)',
+    params
+  )
+  return result.insertId
 }
