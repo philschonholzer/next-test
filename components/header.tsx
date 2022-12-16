@@ -6,6 +6,7 @@ export default function Header() {
       <Link href={'/'}>My App</Link>
       <Link href={'about'}>About</Link>
       <Link href={'users'}>Users</Link>
+      <Link href={'menu'}>Menu</Link>
     </header>
   )
 }
