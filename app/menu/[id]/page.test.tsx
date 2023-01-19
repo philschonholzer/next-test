@@ -18,7 +18,6 @@ describe('Category Page', () => {
     /* @ts-expect-error Server Component */
     const Component = await patch(<CategoryPage params={{ id: '111' }} />)
     render(<Component />)
-    screen.debug()
     expect(
       screen
         .getAllByRole('listitem')
