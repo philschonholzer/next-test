@@ -2,7 +2,7 @@ import { expect, describe, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { patch } from 'rsc-test-helper'
 
-import { DeplessLayout } from './layout'
+import { DeplessLayout } from './category-layout'
 import { NullMenuRepo } from 'domain/menu-repo.test'
 
 describe('Layout', () => {

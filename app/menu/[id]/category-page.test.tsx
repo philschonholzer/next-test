@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { patch } from 'rsc-test-helper'
 
 import { NullMenuRepo } from 'domain/menu-repo.test'
-import { DeplessCategoryPage } from './page'
+import { DeplessCategoryPage } from './category-page'
 import { DeplessNew } from './new'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 
